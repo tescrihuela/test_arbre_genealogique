@@ -3,9 +3,11 @@ import dash
 import flask
 from dash import Input, Output, State, html
 from dash.dependencies import Input, Output
-import dash_html_components as html
-import dash_core_components as dcc
+from dash import dcc
+from dash import html
 import dash_bootstrap_components as dbc
+import webbrowser
+import os.path
 
 ##################
 # Création du serveur
@@ -19,7 +21,7 @@ digraph  {
 node[style="filled"]
 "François 1er"->"Henri II"
 "Claude de France"->"Henri II"->"Charles IX"
-"Catherine de Médicis"->"Charles IX"
+"Catherine de Médicis"->"Charles IX"->"Lucie Duranton"
 }
 """
 
@@ -72,9 +74,13 @@ def display_output(value, engine):
     return value, engine
 
 
-@app.callback(Output("selected", "children"), [Input("gv", "selected")])
+@app.callback(Output("selected", "children"), [Input("gv", "selected")], prevent_initial_call=True)
 def show_selected(value):
-    return html.Div(value)
+    if os.path.exists(f"{value}.pdf"):
+        read_pdf = webbrowser.open_new_tab(f"{value}.pdf")
+    else:
+        read_pdf = webbrowser.open_new_tab(f"python.pdf")
+    return read_pdf, html.Div(value)
 
 
 if __name__ == "__main__":
