@@ -1,3 +1,4 @@
+webbrowser
 dash_interactive_graphviz
 dash_html_components
 dash_core_components
