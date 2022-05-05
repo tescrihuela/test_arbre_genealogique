@@ -1,0 +1,17 @@
+dash_interactive_graphviz
+dash_html_components
+dash_core_components
+dash_bootstrap_components
+click
+dash
+Flask
+Flask-Compress
+future
+gunicorn
+itsdangerous
+Jinja2
+MarkupSafe
+retrying
+setuptools
+six
+Werkzeug
